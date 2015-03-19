@@ -27,27 +27,27 @@ public class Block {
 	public virtual MeshData BlockData(Chunk chunk, int x, int y, int z, MeshData meshData)
 	{
 		if (!chunk.GetBlock (x, y + 1, z).isSolid (Direction.Down)) {
-			meshData = FaceDataUp(meshData);
+			meshData = FaceDataUp(x, y, z, meshData);
 		}
 
 		if (!chunk.GetBlock (x, y - 1, z).isSolid (Direction.Up)) {
-			meshData = FaceDataDown(meshData);
+			meshData = FaceDataDown(x, y, z, meshData);
 		}
 
 		if (!chunk.GetBlock (x - 1, y, z).isSolid (Direction.East)) {
-			meshData = FaceDataWest(meshData);
+			meshData = FaceDataWest(x, y, z, meshData);
 		}
 
 		if (!chunk.GetBlock (x + 1, y, z).isSolid (Direction.West)) {
-			meshData = FaceDataEast(meshData);
+			meshData = FaceDataEast(x, y, z, meshData);
 		}
 
 		if (!chunk.GetBlock (x, y, z - 1).isSolid (Direction.North)) {
-			meshData = FaceDataSouth(meshData);
+			meshData = FaceDataSouth(x, y, z, meshData);
 		}
 
 		if (!chunk.GetBlock (x, y, z + 1).isSolid (Direction.South)) {
-			meshData = FaceDataNorth(meshData);
+			meshData = FaceDataNorth(x, y, z, meshData);
 		}
 
 		return meshData;
