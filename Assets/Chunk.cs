@@ -29,6 +29,7 @@ public class Chunk : MonoBehaviour {
 				blocks[x, y, z] = new BlockAir();
 				}
 		blocks [3, 5, 2] = new Block ();
+		blocks [4, 5, 2] = new BlockGrass ();
 	
 	}
 	
