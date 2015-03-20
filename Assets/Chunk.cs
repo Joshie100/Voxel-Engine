@@ -65,6 +65,13 @@ public class Chunk : MonoBehaviour {
 		filter.mesh.Clear ();
 		filter.mesh.vertices = meshData.vertices.ToArray ();
 		filter.mesh.triangles = meshData.triangles.ToArray ();
+
+		col.sharedMesh = null;
+		Mesh mesh = new Mesh ();
+		mesh.vertices = meshData.colVertices.ToArray ();
+		mesh.triangles = meshData.colTriangles.ToArray ();
+		col.sharedMesh = mesh;
+
 		filter.mesh.Optimize ();
 		filter.mesh.RecalculateNormals ();
 	}

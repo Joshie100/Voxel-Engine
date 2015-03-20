@@ -42,5 +42,15 @@ public class MeshData {
 		triangles.Add (vertices.Count - 4);
 		triangles.Add (vertices.Count - 2);
 		triangles.Add (vertices.Count - 1);
+
+		if (useForCol) {
+			colTriangles.Add (vertices.Count - 4);
+			colTriangles.Add (vertices.Count - 3);
+			colTriangles.Add (vertices.Count - 2);
+			
+			colTriangles.Add (vertices.Count - 4);
+			colTriangles.Add (vertices.Count - 2);
+			colTriangles.Add (vertices.Count - 1);
+		}
 	}
 }
