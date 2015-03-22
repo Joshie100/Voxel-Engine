@@ -13,31 +13,27 @@ public class Chunk : MonoBehaviour {
 	// --------------------- VARS -----------
 	Block[ , ,] blocks = new Block[chunkSize, chunkSize, chunkSize];
 	public static int chunkSize = 16;
-	public bool update = true;
+	public bool update = false;
 	MeshCollider col;
 	MeshFilter filter;
+	public World world;
+	public WorldPos pos;
 	// --------------------------------------
 
 	// Use this for initialization
 	void Start () {
 		col = GetComponent<MeshCollider> ();
 		filter = GetComponent<MeshFilter> ();
-
-		for (int x = 0; x < chunkSize; x++)
-			for (int y = 0; y < chunkSize; y++)
-				for (int z = 0; z < chunkSize; z++) {
-				blocks[x, y, z] = new BlockAir();
-				}
-		blocks [3, 5, 2] = new Block ();
-		blocks [4, 5, 2] = new BlockGrass ();
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (update == true)
+		if (update == true) {
 			UpdateChunk();
+			update = false;
+		}
 	
 	}
 	// Returns the block at that direction
@@ -45,7 +41,13 @@ public class Chunk : MonoBehaviour {
 	{
 		if(IsInRange(x) && IsInRange(y) && IsInRange(z))
 			return blocks[x, y, z];
-		return new BlockAir ();
+		return world.GetBlock(pos.x + x, pos.y + y, pos.z + z);
+	}
+
+	// Sets a block inside the chunk
+	public void SetBlock(int x, int y, int z, Block block)
+	{
+		blocks [x, y, z] = block;
 	}
 
 	// Updates the MeshData of the chunk
